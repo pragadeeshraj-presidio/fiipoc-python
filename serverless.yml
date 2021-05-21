@@ -1,0 +1,22 @@
+service: fii-poc-paypal
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+  region: ap-south-1
+
+plugins:
+  - serverless-python-requirements
+
+functions:
+  payWithPaypal:
+    handler: handler.payWithPaypal
+    events:
+      - http:
+          method: POST
+          path: /pay-with-paypal
+
+custom:
+  pythonRequirements:
+    pythonBin: python3
